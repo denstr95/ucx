@@ -395,11 +395,11 @@ public class UcpEndpoint extends UcxNativeStruct implements Closeable {
             UCS_MEMORY_TYPE_UNKNOWN);
     }
 
-    public UcpRequest atomicNative(long remoteAddress, UcpRemoteKey remoteKey,
+    public UcpRequest atomic(long remoteAddress, UcpRemoteKey remoteKey,
                                      long localAddress, long size, UcxCallback callback,
                                      int memoryType) {
 
-        return atomic(getNativeId(), remoteAddress, remoteKey.getNativeId(),
+        return atomicNative(getNativeId(), remoteAddress, remoteKey.getNativeId(),
             localAddress, size, callback, memoryType);
     }
 
