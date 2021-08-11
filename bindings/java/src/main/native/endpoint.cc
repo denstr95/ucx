@@ -419,5 +419,24 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_sendAmNonBlockingNative(JNIEnv *env, jclas
 }
 
 JNIEXPORT jobject JNICALL
-Java_org_openucx_jucx_ucp_UcpEndpoint_atomic(JNIEnv *, jclass, jlong, jlong, jlong, jlong, jlong, jobject, jint)
+Java_org_openucx_jucx_ucp_UcpEndpoint_atomic(JNIEnv *env, jclass cls,
+                                                           jlong ep_ptr, jlong raddr,
+                                                           jlong rkey_ptr, jlong laddr,
+                                                           jlong size, jobject callback,
+                                                           jint memory_type)
+{
+    ucp_request_param_t param = {0};
+
+    jobject jucx_request = jucx_request_allocate(env, callback, &param, memory_type);
+
+    param.cb.send       = jucx_request_callback;
+
+    ucs_status_ptr_t status = ucp_get_nbx((ucp_ep_h)ep_ptr, (void *)laddr, size,
+                                          raddr, (ucp_rkey_h)rkey_ptr, &param);
+    ucs_trace_req("JUCX: get_nb request %p, raddr: %zu, size: %zu, result address: %zu",
+                  status, raddr, size, laddr);
+
+    process_request(env, jucx_request, status);
+    return jucx_request;
+}
     
