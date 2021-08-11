@@ -419,7 +419,7 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_sendAmNonBlockingNative(JNIEnv *env, jclas
 }
 
 JNIEXPORT jobject JNICALL
-Java_org_openucx_jucx_ucp_UcpEndpoint_atomic(JNIEnv *env, jclass cls,
+Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
                                                            jlong ep_ptr, jlong raddr,
                                                            jlong rkey_ptr, jlong laddr,
                                                            jlong size, jobject callback,
