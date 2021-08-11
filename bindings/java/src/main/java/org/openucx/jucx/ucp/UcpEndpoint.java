@@ -387,14 +387,14 @@ public class UcpEndpoint extends UcxNativeStruct implements Closeable {
         return atomic(remoteAddress, remoteKey, UcxUtils.getAddress(dst),
             dst.remaining(), callback);
     }
-
+  */
     public UcpRequest atomic(long remoteAddress, UcpRemoteKey remoteKey,
                                      long localAddress, long size, UcxCallback callback) {
 
         return atomic(remoteAddress, remoteKey, localAddress, size, callback,
             UCS_MEMORY_TYPE_UNKNOWN);
     }
-  */
+
     public UcpRequest atomic(long remoteAddress, UcpRemoteKey remoteKey,
                                      long localAddress, long size, UcxCallback callback,
                                      int memoryType) {
