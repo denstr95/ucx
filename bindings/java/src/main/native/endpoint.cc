@@ -417,6 +417,7 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_sendAmNonBlockingNative(JNIEnv *env, jclas
     process_request(env, jucx_request, status);
     return jucx_request;
 }
+/*
 
 JNIEXPORT jobject JNICALL
 Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
@@ -440,4 +441,5 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
     process_request(env, jucx_request, status);
     return jucx_request;
 }
-    
+ */
+   
