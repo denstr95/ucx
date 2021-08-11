@@ -441,4 +441,9 @@ public class UcpEndpoint extends UcxNativeStruct implements Closeable {
     private static native UcpRequest flushNonBlockingNative(long enpointId, UcxCallback callback);
 
     private static native UcpRequest closeNonBlockingNative(long endpointId, int mode);
+    
+    private static native UcpRequest atomic(long enpointId, long localAddress,
+                                                          long size, long remoteAddr,
+                                                          long ucpRkeyId, UcxCallback callback,
+                                                          int memoryType);
 }
