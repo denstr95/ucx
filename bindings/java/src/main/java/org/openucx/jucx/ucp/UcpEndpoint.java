@@ -376,9 +376,9 @@ public class UcpEndpoint extends UcxNativeStruct implements Closeable {
         return closeNonBlockingNative(getNativeId(), 0);
     }
     
-        /** 
+    /** 
      * Post an atomic memory operation.
-     */
+   
     public UcpRequest atomic(long remoteAddress, UcpRemoteKey remoteKey,
                                      ByteBuffer dst, UcxCallback callback) {
 
@@ -402,7 +402,7 @@ public class UcpEndpoint extends UcxNativeStruct implements Closeable {
         return atomicNative(getNativeId(), remoteAddress, remoteKey.getNativeId(),
             localAddress, size, callback, memoryType);
     }
-
+  */
     private native long createEndpointNative(UcpEndpointParams params, long workerId);
 
     private static native void destroyEndpointNative(long epId);
