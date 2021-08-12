@@ -378,7 +378,7 @@ public class UcpEndpoint extends UcxNativeStruct implements Closeable {
     
     /** 
      * Post an atomic memory operation.
-    */
+
     public UcpRequest atomic(long remoteAddress, UcpRemoteKey remoteKey,
                                      ByteBuffer dst, UcxCallback callback) {
 
@@ -387,7 +387,7 @@ public class UcpEndpoint extends UcxNativeStruct implements Closeable {
         return atomic(remoteAddress, remoteKey, UcxUtils.getAddress(dst),
             dst.remaining(), callback);
     }
- 
+     */
     public UcpRequest atomic(long remoteAddress, UcpRemoteKey remoteKey,
                              long localAddress, long size, UcxCallback callback, long rp_buff) {
 
