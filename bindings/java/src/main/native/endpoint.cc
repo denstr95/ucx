@@ -430,6 +430,8 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
     jobject jucx_request = jucx_request_allocate(env, callback, &param, memory_type);
 
     param.cb.send       = jucx_request_callback;
+    param.op_attr_mask |= UCP_OP_ATTR_FIELD_DATATYPE;
+
     
     ucs_status_ptr_t status = ucp_atomic_op_nbx((ucp_ep_h)ep_ptr, UCP_ATOMIC_OP_ADD, (void *)laddr, size,
                                           raddr, (ucp_rkey_h)rkey_ptr, &param);
