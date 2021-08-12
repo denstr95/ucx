@@ -431,6 +431,7 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
 
     param.cb.send       = jucx_request_callback;
     param.op_attr_mask |= UCP_OP_ATTR_FIELD_DATATYPE;
+    param.datatype = ucp_dt_make_contig(4);
 
     
     ucs_status_ptr_t status = ucp_atomic_op_nbx((ucp_ep_h)ep_ptr, UCP_ATOMIC_OP_ADD, (void *)laddr, size,
