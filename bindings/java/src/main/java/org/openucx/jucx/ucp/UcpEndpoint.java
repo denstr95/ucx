@@ -389,18 +389,18 @@ public class UcpEndpoint extends UcxNativeStruct implements Closeable {
     }
  
     public UcpRequest atomic(long remoteAddress, UcpRemoteKey remoteKey,
-                                     long localAddress, long size, UcxCallback callback) {
+                                     long localAddress, long size, UcxCallback callback, long rp_buff) {
 
         return atomic(remoteAddress, remoteKey, localAddress, size, callback,
-            UCS_MEMORY_TYPE_UNKNOWN);
+            UCS_MEMORY_TYPE_UNKNOWN, rp_buff);
     }
 
     public UcpRequest atomic(long remoteAddress, UcpRemoteKey remoteKey,
                                      long localAddress, long size, UcxCallback callback,
-                                     int memoryType) {
+                                     int memoryType, long rp_buff) {
 
         return atomicNative(getNativeId(), remoteAddress, remoteKey.getNativeId(),
-            localAddress, size, callback, memoryType);
+            localAddress, size, callback, memoryType, rp_buff);
     }
 
     private native long createEndpointNative(UcpEndpointParams params, long workerId);
@@ -472,5 +472,5 @@ public class UcpEndpoint extends UcxNativeStruct implements Closeable {
     private static native UcpRequest atomicNative(long enpointId, long remoteAddr,
                                                           long ucpRkeyId, long localAddress,
                                                           long size,  UcxCallback callback,
-                                                          int memoryType);
+                                                          int memoryType, long rp_buff);
 }
