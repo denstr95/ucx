@@ -198,6 +198,8 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_getNonBlockingNative(JNIEnv *env, jclass c
                                           raddr, (ucp_rkey_h)rkey_ptr, &param);
     ucs_trace_req("JUCX: get_nb request %p, raddr: %zu, size: %zu, result address: %zu",
                   status, raddr, size, laddr);
+    printf("JUCX: ucp_atomic_op_nbx request %p, raddr: %zu, size: %zu, result address: %zu",
+                  status, raddr, size, laddr);
 
     process_request(env, jucx_request, status);
     return jucx_request;
