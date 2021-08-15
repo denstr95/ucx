@@ -234,8 +234,6 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_sendTaggedNonBlockingNative(JNIEnv *env, j
 
     ucs_status_ptr_t status = ucp_tag_send_nbx((ucp_ep_h)ep_ptr, (void *)addr, size, tag, &param);
     ucs_trace_req("JUCX: send_tag_nb request %p, size: %zu, tag: %ld", status, size, tag);
-    printf("JUCX: send_tag_nb request %p, size: %zu, tag: %ld", status, size, tag);
-
 
     process_request(env, jucx_request, status);
     return jucx_request;
@@ -430,7 +428,7 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
                                                            jlong ep_ptr, jlong raddr,
                                                            jlong rkey_ptr, jlong laddr,
                                                            jlong size, jobject callback,
-                                                           jint memory_type, jlong rp_buff)
+                                                           jint memory_type)
 {
     ucp_request_param_t param = {0};
 
@@ -439,8 +437,6 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
     param.cb.send       = jucx_request_callback;
     param.op_attr_mask |= UCP_OP_ATTR_FIELD_DATATYPE;
     param.datatype = ucp_dt_make_contig(4);
-    param.reply_buffer = (void *) rp_buff;
-
     
     ucs_status_ptr_t status = ucp_atomic_op_nbx((ucp_ep_h)ep_ptr, UCP_ATOMIC_OP_ADD, (void *)laddr, size,
                                           raddr, (ucp_rkey_h)rkey_ptr, &param);
