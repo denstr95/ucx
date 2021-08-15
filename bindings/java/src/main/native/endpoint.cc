@@ -7,6 +7,8 @@
 #include "org_openucx_jucx_ucp_UcpEndpoint.h"
 
 #include <string.h>    /* memset */
+#include <cstdio>  /* printf */
+
 
 
 static void error_handler(void *arg, ucp_ep_h ep, ucs_status_t status)
@@ -439,6 +441,8 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
                                           raddr, (ucp_rkey_h)rkey_ptr, &param);
 
     ucs_trace_req("JUCX: ucp_atomic_op_nbx request %p, raddr: %zu, size: %zu, result address: %zu",
+                  status, raddr, size, laddr);
+    printf("JUCX: ucp_atomic_op_nbx request %p, raddr: %zu, size: %zu, result address: %zu",
                   status, raddr, size, laddr);
 
     process_request(env, jucx_request, status);
