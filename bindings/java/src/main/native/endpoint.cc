@@ -213,6 +213,7 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_getNonBlockingImplicitNative(JNIEnv *env, 
 {
     ucs_status_t status = ucp_get_nbi((ucp_ep_h)ep_ptr, (void *)laddr, size, raddr,
                                       (ucp_rkey_h)rkey_ptr);
+    
 
     if (UCS_STATUS_IS_ERR(status)) {
         JNU_ThrowExceptionByStatus(env, status);
@@ -233,6 +234,8 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_sendTaggedNonBlockingNative(JNIEnv *env, j
 
     ucs_status_ptr_t status = ucp_tag_send_nbx((ucp_ep_h)ep_ptr, (void *)addr, size, tag, &param);
     ucs_trace_req("JUCX: send_tag_nb request %p, size: %zu, tag: %ld", status, size, tag);
+    printf("JUCX: send_tag_nb request %p, size: %zu, tag: %ld", status, size, tag);
+
 
     process_request(env, jucx_request, status);
     return jucx_request;
