@@ -440,7 +440,7 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
     
    // ucp_atomic_op_t op = UCP_ATOMIC_OP_AND;
     
-   //ucs_status_ptr_t status = ucp_atomic_op_nbx((ucp_ep_h)ep_ptr, UCP_ATOMIC_OP_AND, laddr, 1,
+   //ucs_status_ptr_t status = ucp_atomic_op_nbx((ucp_ep_h)ep_ptr, UCP_ATOMIC_OP_AND, (const void*) laddr, 1,
    //                                      raddr, (ucp_rkey_h)rkey_ptr,&param);
     ucs_status_ptr_t status =  ucp_atomic_post((ucp_ep_h)ep_ptr, UCP_ATOMIC_OP_AND, laddr,
                              4, raddr,  (ucp_rkey_h)rkey_pt );
