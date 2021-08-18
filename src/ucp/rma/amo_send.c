@@ -202,8 +202,8 @@ UCS_PROFILE_FUNC(ucs_status_ptr_t, ucp_atomic_op_nbx,
                   param->cb.send : NULL);
   
      printf("atomic_op_nbx opcode %d buffer %p result %p "
-                  "datatype 0x%"PRIx64" remote_addr 0x%\n"PRIx64
-                  " rkey %p to %s cb %p", opcode, buffer, reply_buffer,
+                  "datatype 0x%"PRIx64" remote_addr 0x%"PRIx64
+                  " rkey %p to %s cb %p/n", opcode, buffer, reply_buffer,
                   param->datatype, remote_addr, rkey, ucp_ep_peer_name(ep),
                   (param->op_attr_mask & UCP_OP_ATTR_FIELD_CALLBACK) ?
                   param->cb.send : NULL);
