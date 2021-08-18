@@ -239,11 +239,15 @@ UCS_PROFILE_FUNC(ucs_status_ptr_t, ucp_atomic_op_nbx,
                                      goto out;});
 
         if (param->op_attr_mask & UCP_OP_ATTR_FIELD_REPLY_BUFFER) {
+            printf("atomic ucp_amo_init_fetch!!!\n");
+
             ucp_amo_init_fetch(req, ep, param->reply_buffer,
                                ucp_uct_atomic_op_table[opcode], op_size,
                                remote_addr, rkey, value, rkey->cache.amo_proto);
             status_p = ucp_rma_send_request(req, param);
         } else {
+            printf("atomic ucp_amo_init_post!!!\n");
+
             ucp_amo_init_post(req, ep, ucp_uct_atomic_op_table[opcode], op_size,
                               remote_addr, rkey, value, rkey->cache.amo_proto);
             status_p = ucp_rma_send_request(req, param);
@@ -252,7 +256,10 @@ UCS_PROFILE_FUNC(ucs_status_ptr_t, ucp_atomic_op_nbx,
 
     /* TODO remove once atomic post returning request supported by users */
     if (op == UCP_OP_ID_AMO_POST) {
+        printf("atomic UCP_OP_ID_AMO_POST!!!\n");
+
         if (UCS_PTR_IS_PTR(status_p)) {
+            printf("atomic free!!!\n");
             ucp_request_free(status_p);
         }
         status_p = UCS_STATUS_PTR(UCS_OK);
