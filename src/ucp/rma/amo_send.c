@@ -188,13 +188,20 @@ UCS_PROFILE_FUNC(ucs_status_ptr_t, ucp_atomic_op_nbx,
         reply_buffer = NULL;
         op           = UCP_OP_ID_AMO_POST;
     }
-
+    printf("atomic hear!!!");
     UCP_AMO_CHECK_PARAM_NBX(ep->worker->context, remote_addr, op_size,
                             count, opcode, UCP_ATOMIC_OP_LAST,
                             return UCS_STATUS_PTR(UCS_ERR_INVALID_PARAM));
     UCP_WORKER_THREAD_CS_ENTER_CONDITIONAL(ep->worker);
 
     ucs_trace_req("atomic_op_nbx opcode %d buffer %p result %p "
+                  "datatype 0x%"PRIx64" remote_addr 0x%"PRIx64
+                  " rkey %p to %s cb %p", opcode, buffer, reply_buffer,
+                  param->datatype, remote_addr, rkey, ucp_ep_peer_name(ep),
+                  (param->op_attr_mask & UCP_OP_ATTR_FIELD_CALLBACK) ?
+                  param->cb.send : NULL);
+  
+     printf("atomic_op_nbx opcode %d buffer %p result %p "
                   "datatype 0x%"PRIx64" remote_addr 0x%"PRIx64
                   " rkey %p to %s cb %p", opcode, buffer, reply_buffer,
                   param->datatype, remote_addr, rkey, ucp_ep_peer_name(ep),
