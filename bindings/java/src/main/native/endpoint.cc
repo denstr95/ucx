@@ -438,7 +438,7 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
     param.op_attr_mask |= UCP_OP_ATTR_FIELD_DATATYPE;
     param.datatype = ucp_dt_make_contig(4);
     
-    enum ucp_atomic_op_t op = UCP_ATOMIC_OP_ADD;
+    ucp_atomic_op_t op = UCP_ATOMIC_OP_ADD;
     
     ucs_status_ptr_t status = ucp_atomic_op_nbx((ucp_ep_h)ep_ptr, op, (void *)laddr, size,
                                           raddr, (ucp_rkey_h)rkey_ptr, &param);
