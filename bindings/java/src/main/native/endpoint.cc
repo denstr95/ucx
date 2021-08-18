@@ -440,9 +440,10 @@ Java_org_openucx_jucx_ucp_UcpEndpoint_atomicNative(JNIEnv *env, jclass cls,
     
    // ucp_atomic_op_t op = UCP_ATOMIC_OP_AND;
     
-    ucs_status_ptr_t status = ucp_atomic_op_nbx((ucp_ep_h)ep_ptr, UCP_ATOMIC_OP_AND, laddr, 1,
-                                          raddr, (ucp_rkey_h)rkey_ptr,&param);
-
+   //ucs_status_ptr_t status = ucp_atomic_op_nbx((ucp_ep_h)ep_ptr, UCP_ATOMIC_OP_AND, laddr, 1,
+   //                                      raddr, (ucp_rkey_h)rkey_ptr,&param);
+    ucs_status_ptr_t status =  ucp_atomic_post((ucp_ep_h)ep_ptr, UCP_ATOMIC_OP_AND, laddr,
+                             4, raddr,  (ucp_rkey_h)rkey_pt );
     ucs_trace_req("JUCX: ucp_atomic_op_nbx request %p, raddr: %zu, size: %zu, result address: %zu",
                   status, raddr, size, laddr);
     printf("JUCX: ucp_atomic_op_nbx request %p, raddr: %zu, size: %zu, result address: %zu",
