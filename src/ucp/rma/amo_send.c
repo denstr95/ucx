@@ -209,8 +209,6 @@ UCS_PROFILE_FUNC(ucs_status_ptr_t, ucp_atomic_op_nbx,
                   param->cb.send : NULL);
 
     if (ep->worker->context->config.ext.proto_enable) {
-          printf("atomic proto!!!\n");
-
         req = ucp_request_get_param(ep->worker, param,
                                     {status_p = UCS_STATUS_PTR(UCS_ERR_NO_MEMORY);
                                     goto out;});
@@ -224,30 +222,22 @@ UCS_PROFILE_FUNC(ucs_status_ptr_t, ucp_atomic_op_nbx,
                 rkey->cfg_index, req, op, reply_buffer, op_size,
                 param->datatype, op_size, param);
     } else {
-        printf("atomic key!!!\n");
-
         status = UCP_RKEY_RESOLVE(rkey, ep, amo);
         if (status != UCS_OK) {
             status_p = UCS_STATUS_PTR(status);
             goto out;
         }
-        printf("atomic UCS not ok !!!\n");
-
 
         req = ucp_request_get_param(ep->worker, param,
                                     {status_p = UCS_STATUS_PTR(UCS_ERR_NO_MEMORY);
                                      goto out;});
 
         if (param->op_attr_mask & UCP_OP_ATTR_FIELD_REPLY_BUFFER) {
-            printf("atomic ucp_amo_init_fetch!!!\n");
-
             ucp_amo_init_fetch(req, ep, param->reply_buffer,
                                ucp_uct_atomic_op_table[opcode], op_size,
                                remote_addr, rkey, value, rkey->cache.amo_proto);
             status_p = ucp_rma_send_request(req, param);
         } else {
-            printf("atomic ucp_amo_init_post!!!\n");
-
             ucp_amo_init_post(req, ep, ucp_uct_atomic_op_table[opcode], op_size,
                               remote_addr, rkey, value, rkey->cache.amo_proto);
             status_p = ucp_rma_send_request(req, param);
@@ -256,13 +246,11 @@ UCS_PROFILE_FUNC(ucs_status_ptr_t, ucp_atomic_op_nbx,
 
     /* TODO remove once atomic post returning request supported by users */
     if (op == UCP_OP_ID_AMO_POST) {
-        printf("atomic UCP_OP_ID_AMO_POST!!!\n");
 
         if (UCS_PTR_IS_PTR(status_p)) {
-            printf("atomic free!!!\n");
             ucp_request_free(status_p);
         }
-       // status_p = UCS_STATUS_PTR(UCS_OK);
+        status_p = UCS_STATUS_PTR(UCS_OK);
     }
 
 out:
