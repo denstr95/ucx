@@ -262,7 +262,7 @@ UCS_PROFILE_FUNC(ucs_status_ptr_t, ucp_atomic_op_nbx,
             printf("atomic free!!!\n");
             ucp_request_free(status_p);
         }
-        status_p = UCS_STATUS_PTR(UCS_OK);
+       // status_p = UCS_STATUS_PTR(UCS_OK);
     }
 
 out:
