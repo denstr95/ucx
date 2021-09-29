@@ -35,7 +35,7 @@ public class UcxReadBWBenchmarkSender extends UcxBenchmark {
                 }
             })
             .setSocketAddress(new InetSocketAddress(serverHost, serverPort)));
-        /*
+
         UcpMemory memory = context.memoryMap(allocationParams);
         resources.push(memory);
         ByteBuffer data = UcxUtils.getByteBufferView(memory.getAddress(),
@@ -52,6 +52,7 @@ public class UcxReadBWBenchmarkSender extends UcxBenchmark {
         sendData.put(rkeyBuffer);
         sendData.putInt(data.hashCode());
         sendData.clear();
+        /*
 
         // Send memory metadata and wait until receiver will finish benchmark.
         endpoint.sendTaggedNonBlocking(sendData, null);
