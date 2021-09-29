@@ -23,7 +23,7 @@ public class UcxReadBWBenchmarkSender extends UcxBenchmark {
         }
 
         createContextAndWorker();
-
+/*
         String serverHost = argsMap.get("s");
         UcpEndpoint endpoint = worker.newEndpoint(new UcpEndpointParams()
             .setPeerErrorHandlingMode()
@@ -72,6 +72,6 @@ public class UcxReadBWBenchmarkSender extends UcxBenchmark {
         } catch (Exception ignored) {
         } finally {
             closeResources();
-        }
+        }*/
     }
 }
