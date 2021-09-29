@@ -37,6 +37,7 @@ public class UcxReadBWBenchmarkReceiver extends UcxBenchmark {
         while (connRequest.get() == null) {
             worker.progress();
         }
+        System.out.println("End Waiting for connections on " + sockaddr + " ...");
 
         UcpEndpoint endpoint = worker.newEndpoint(new UcpEndpointParams()
             .setConnectionRequest(connRequest.get())
