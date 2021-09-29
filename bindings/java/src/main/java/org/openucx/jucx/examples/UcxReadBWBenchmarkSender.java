@@ -54,7 +54,7 @@ public class UcxReadBWBenchmarkSender extends UcxBenchmark {
         sendData.clear();
 
         // Send memory metadata and wait until receiver will finish benchmark.
-        endpoint.sendTaggedNonBlocking(sendData, null);
+    //    endpoint.sendTaggedNonBlocking(sendData, null);
         /*
 
         try {
